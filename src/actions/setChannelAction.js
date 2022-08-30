@@ -1,4 +1,4 @@
-const SettingsItemModel = require("../schema/Settings");
+const SettingsItemModel = require("../schema/settings");
 
 const setChannelAction = async (channelTag, serverId, db, message) => {
   try {

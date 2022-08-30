@@ -3,7 +3,7 @@ const catchAction = require("../actions/catchAction");
 const helpAction = require("../actions/helpAction");
 const sendMessageAction = require("../actions/sendMessageAction");
 const setChannelAction = require("../actions/setChannelAction");
-const SettingsItemModel = require("../schema/Settings");
+const SettingsItemModel = require("../schema/settings");
 
 let settings = null;
 
