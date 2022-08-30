@@ -23,6 +23,9 @@ const PokemonRecordSchema = new Schema(
     name: {
       type: String,
     },
+    claimed: {
+      type: Boolean,
+    },
   },
   {
     timestamps: true,

@@ -17,8 +17,6 @@ const messageCreateHandler = async (message, db) => {
       settings = await SettingsItem.findOne({ serverId: serverId });
     }
 
-    console.log("message", message);
-
     console.log("received message");
     if (!message.content.startsWith(prefix)) {
       if (settings && settings.channelId !== message.channelId) {

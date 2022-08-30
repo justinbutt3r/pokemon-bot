@@ -16,7 +16,7 @@ const catchAction = async (message, guess, db, settings) => {
 
     const record = latest[0];
     const difference = differenceInMinutes(new Date(), record.createdAt);
-    if (difference <= timeToCatch) {
+    if (difference <= timeToCatch && !record.claimed) {
       if (record.name.toLowerCase() === guess.toLowerCase()) {
         const claim = new PokemonClaims({
           serverId: settings.serverId,
@@ -28,6 +28,8 @@ const catchAction = async (message, guess, db, settings) => {
         });
 
         await claim.save();
+        record.claimed = true;
+        await record.save();
 
         message.react("✅");
         message.reply(`Gotcha! ${record.name} was caught!`);
