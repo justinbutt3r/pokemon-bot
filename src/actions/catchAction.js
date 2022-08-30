@@ -11,8 +11,7 @@ const catchAction = async (message, guess, db, settings) => {
 
     const latest = await PokemonRecord.find({ serverId: settings.serverId })
       .sort({ _id: -1 })
-      .limit(1)
-      .lean();
+      .limit(1);
 
     const record = latest[0];
     const difference = differenceInMinutes(new Date(), record.createdAt);
