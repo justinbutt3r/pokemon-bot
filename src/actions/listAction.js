@@ -8,14 +8,10 @@ const listAction = async (message, db, settings) => {
     const channelId = settings.channelId || message.channelId;
     const channelWantSend = message.guild.channels.cache.get(channelId);
 
-    console.log(settings);
-
     const claimed = await PokemonClaims.find({
       serverId: message.guildId,
       userId: message.author.id,
     });
-
-    console.log(message.author.id, message.guildId);
 
     const claimedList = claimed.map(
       (item) => `**${item.name}** #${item.apiId}`

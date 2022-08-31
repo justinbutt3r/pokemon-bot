@@ -5,5 +5,5 @@ module.exports = {
   dbName: "pokemonBot",
   apiLink: process.env.API_LINK,
   timeToCatch: 5,
-  chanceToAppear: 10,
+  chanceToAppear: 7,
 };
