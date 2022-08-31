@@ -1,6 +1,7 @@
 const { prefix, chanceToAppear } = require("../../config");
 const catchAction = require("../actions/catchAction");
 const helpAction = require("../actions/helpAction");
+const listAction = require("../actions/listAction");
 const sendMessageAction = require("../actions/sendMessageAction");
 const setChannelAction = require("../actions/setChannelAction");
 const SettingsItemModel = require("../schema/settings");
@@ -12,7 +13,7 @@ const messageCreateHandler = async (message, db) => {
     const serverId = message.guildId;
     console.log("server id:", serverId);
 
-    if (!settings) {
+    if (!settings || settings.serverId !== serverId) {
       const SettingsItem = SettingsItemModel(db);
       settings = await SettingsItem.findOne({ serverId: serverId });
     }
@@ -47,6 +48,9 @@ const messageCreateHandler = async (message, db) => {
       case "catch":
         if (list.length != 3) throw new Error("Invalid command");
         await catchAction(message, arguement, db, settings);
+        break;
+      case "list":
+        await listAction(message, db, settings);
         break;
       default:
         throw new Error("Unknown command");
